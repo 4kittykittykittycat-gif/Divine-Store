@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Divine Network — Typography</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="styles/typography.css">
+  <style>
+    :root {
+      --bg: #0B0A14;
+      --bg-raised: #14121F;
+      --ink: #F4F1FA;
+      --ink-muted: #A7A2BA;
+      --line: #2A2640;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(232, 192, 79, 0.12), transparent 70%),
+        /* subtle block grid */
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px) 0 0 / 32px 32px,
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px) 0 0 / 32px 32px,
+        var(--bg);
+      color: var(--ink);
+    }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+    header.site {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 20px 0; flex-wrap: wrap;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    nav.site-nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    nav.site-nav a { color: var(--ink-muted); text-decoration: none; }
+    nav.site-nav a:hover { color: var(--gold-300); }
+
+    .crown { image-rendering: pixelated; shape-rendering: crispEdges; display: block; }
+
+    .hero { text-align: center; padding: 72px 0 56px; }
+    .hero .crown { margin: 0 auto 20px; width: 88px; height: auto; }
+    .hero .eyebrow { color: var(--gold-300); margin: 24px 0 12px; }
+    .hero .lead { color: var(--ink-muted); max-width: 560px; margin: 16px auto 0; }
+
+    /* stepped (pixel) border — Minecraft identity via shape, not type */
+    .stepped {
+      --s: 4px;
+      clip-path: polygon(
+        0 calc(var(--s)*2), var(--s) calc(var(--s)*2), var(--s) var(--s), calc(var(--s)*2) var(--s), calc(var(--s)*2) 0,
+        calc(100% - var(--s)*2) 0, calc(100% - var(--s)*2) var(--s), calc(100% - var(--s)) var(--s), calc(100% - var(--s)) calc(var(--s)*2), 100% calc(var(--s)*2),
+        100% calc(100% - var(--s)*2), calc(100% - var(--s)) calc(100% - var(--s)*2), calc(100% - var(--s)) calc(100% - var(--s)), calc(100% - var(--s)*2) calc(100% - var(--s)), calc(100% - var(--s)*2) 100%,
+        calc(var(--s)*2) 100%, calc(var(--s)*2) calc(100% - var(--s)), var(--s) calc(100% - var(--s)), var(--s) calc(100% - var(--s)*2), 0 calc(100% - var(--s)*2)
+      );
+    }
+
+    .btn {
+      display: inline-block; border: 0; cursor: pointer; padding: 14px 28px;
+      background: var(--gold-gradient); color: #2A1C04; text-decoration: none;
+    }
+    .btn--ghost { background: var(--bg-raised); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
+    .hero .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
+
+    section { padding: 56px 0; border-top: 1px solid var(--line); }
+    .section-title { margin: 8px 0 32px; }
+    section .eyebrow { color: var(--gold-500); }
+
+    .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .card { background: var(--bg-raised); padding: 28px; }
+    .card-title { margin: 0 0 8px; }
+    .card p { color: var(--ink-muted); margin: 0 0 20px; }
+    .card .price { margin: 8px 0 20px; }
+    .card .btn { width: 100%; text-align: center; }
+
+    .stats { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+    .stat { background: var(--bg-raised); padding: 20px; }
+    .stat-label { color: var(--ink-muted); text-transform: uppercase; margin-top: 6px; }
+
+    .leader { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .leader .rank { font-family: var(--font-display); font-weight: 700; color: var(--gold-500); width: 28px; }
+    .leader .player-name { flex: 1; }
+    .leader .stat-value { font-size: 1rem; color: var(--ink-muted); }
+    .avatar { width: 28px; height: 28px; background: linear-gradient(135deg, #6E4B2A, #3C2A1A); image-rendering: pixelated; }
+
+    .form { display: grid; gap: 8px; max-width: 420px; }
+    .form input {
+      font-size: 1rem; padding: 12px 14px; background: var(--bg-raised); color: var(--ink);
+      border: 1px solid var(--line); outline: none;
+    }
+    .form input:focus { border-color: var(--gold-500); }
+
+    details { border-bottom: 1px solid var(--line); padding: 18px 0; }
+    summary { cursor: pointer; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    .faq-answer { color: var(--ink-muted); margin: 10px 0 0; }
+
+    .specimen { display: grid; gap: 24px; }
+    .specimen-row { display: grid; gap: 4px; }
+    .specimen-row .caption { color: var(--ink-muted); text-transform: uppercase; }
+
+    footer { padding: 40px 0 56px; color: var(--ink-muted); text-align: center; border-top: 1px solid var(--line); }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- 16×12 pixel-art crown; the only "pixel" element next to the logotype -->
+      <symbol id="pixel-crown" viewBox="0 0 16 12">
+        <g fill="#C99428">
+          <rect x="0" y="2" width="2" height="2"/><rect x="7" y="0" width="2" height="2"/><rect x="14" y="2" width="2" height="2"/>
+          <rect x="1" y="4" width="2" height="6"/><rect x="13" y="4" width="2" height="6"/>
+          <rect x="1" y="10" width="14" height="2"/>
+        </g>
+        <g fill="#E8C04F">
+          <rect x="3" y="5" width="2" height="5"/><rect x="11" y="5" width="2" height="5"/>
+          <rect x="5" y="4" width="6" height="6"/><rect x="7" y="2" width="2" height="2"/>
+          <rect x="2" y="4" width="1" height="1"/><rect x="13" y="4" width="1" height="1"/>
+        </g>
+        <g fill="#FFF5C4">
+          <rect x="7" y="2" width="1" height="1"/><rect x="0" y="2" width="1" height="1"/><rect x="14" y="2" width="1" height="1"/>
+          <rect x="5" y="4" width="1" height="1"/>
+        </g>
+        <rect x="7" y="6" width="2" height="2" fill="#7FD6FF"/>
+        <rect x="4" y="7" width="1" height="1" fill="#E85A8F"/><rect x="11" y="7" width="1" height="1" fill="#E85A8F"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="wrap">
+    <header class="site">
+      <a class="brand" href="#">
+        <svg class="crown" width="32" height="24" aria-hidden="true"><use href="#pixel-crown"/></svg>
+        <span class="logo-text logo-text--sm">Divine</span>
+      </a>
+      <nav class="site-nav nav-primary" aria-label="Primary">
+        <a href="#store">Store</a>
+        <a href="#stats">Stats</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="hero">
+        <svg class="crown" width="88" height="66" aria-hidden="true"><use href="#pixel-crown"/></svg>
+        <h1 class="logo-text">Divine Network</h1>
+        <p class="eyebrow">play.divinesmp.net</p>
+        <h2 class="hero-title">Ascend beyond survival.</h2>
+        <p class="lead">A celestial SMP experience with ranks, cosmetics and crates crafted for players who want more from their world.</p>
+        <div class="actions">
+          <a class="btn stepped" href="#store">Visit store</a>
+          <a class="btn btn--ghost stepped" href="#stats">View stats</a>
+        </div>
+      </div>
+
+      <section id="store">
+        <p class="eyebrow">DivineSMP Ranks</p>
+        <h2 class="section-title">Choose your ascension</h2>
+        <div class="grid">
+          <article class="card stepped">
+            <h3 class="card-title">Seraph</h3>
+            <p>Starter perks, a gold name tag and access to /kit seraph.</p>
+            <div class="price text-gold"><span class="price__currency">$</span>9.99</div>
+            <button class="btn stepped">Add to cart</button>
+          </article>
+          <article class="card stepped">
+            <h3 class="card-title">Archon</h3>
+            <p>Everything in Seraph, plus particle trails and two extra homes.</p>
+            <div class="price text-gold"><span class="price__currency">$</span>24.99</div>
+            <button class="btn stepped">Add to cart</button>
+          </article>
+          <article class="card stepped">
+            <h3 class="card-title">Divine</h3>
+            <p>The full celestial kit: crown cosmetic, /fly in hubs and priority queue.</p>
+            <div class="price text-gold"><span class="price__currency">$</span>49.99</div>
+            <button class="btn stepped">Add to cart</button>
+          </article>
+        </div>
+      </section>
+
+      <section id="stats">
+        <p class="eyebrow">Live</p>
+        <h2 class="section-title">Network statistics</h2>
+        <div class="stats">
+          <div class="stat stepped"><div class="stat-value">1,284</div><div class="stat-label">Players online</div></div>
+          <div class="stat stepped"><div class="stat-value">48,920</div><div class="stat-label">Unique players</div></div>
+          <div class="stat stepped"><div class="stat-value">99.9%</div><div class="stat-label">Uptime</div></div>
+        </div>
+        <div style="margin-top:32px">
+          <div class="leader"><span class="rank">1</span><span class="avatar stepped"></span><span class="player-name">Aurelian_</span><span class="stat-value">2,410 kills</span></div>
+          <div class="leader"><span class="rank">2</span><span class="avatar stepped"></span><span class="player-name">StarforgedKai</span><span class="stat-value">2,187 kills</span></div>
+          <div class="leader"><span class="rank">3</span><span class="avatar stepped"></span><span class="player-name">luminaxx</span><span class="stat-value">1,964 kills</span></div>
+        </div>
+      </section>
+
+      <section>
+        <p class="eyebrow">Checkout</p>
+        <h2 class="section-title">Your details</h2>
+        <form class="form" onsubmit="return false">
+          <label class="label" for="ign">Minecraft username</label>
+          <input id="ign" placeholder="e.g. Aurelian_" autocomplete="off">
+        </form>
+      </section>
+
+      <section id="faq">
+        <p class="eyebrow">Support</p>
+        <h2 class="section-title">Frequently asked</h2>
+        <details>
+          <summary class="faq-question">How long until my rank is applied?</summary>
+          <p class="faq-answer">Purchases are delivered automatically within a few minutes. Make sure you're online on DivineSMP.</p>
+        </details>
+        <details>
+          <summary class="faq-question">Can I upgrade later?</summary>
+          <p class="faq-answer">Yes — you only pay the difference between your current rank and the new one.</p>
+        </details>
+      </section>
+
+      <section>
+        <p class="eyebrow">Reference</p>
+        <h2 class="section-title">Type specimen</h2>
+        <div class="specimen">
+          <div class="specimen-row"><span class="caption">Logo — Sora 800 · gold gradient</span><span class="logo-text" style="font-size:3rem">DivineSMP</span></div>
+          <div class="specimen-row"><span class="caption">Hero — Sora 800</span><span class="hero-title">Ascend beyond survival.</span></div>
+          <div class="specimen-row"><span class="caption">Section — Sora 700</span><span class="section-title" style="margin:0">Choose your ascension</span></div>
+          <div class="specimen-row"><span class="caption">Card — Sora 600</span><span class="card-title">Archon rank</span></div>
+          <div class="specimen-row"><span class="caption">Price — Sora 800</span><span class="price text-gold"><span class="price__currency">$</span>24.99</span></div>
+          <div class="specimen-row"><span class="caption">Body — Manrope 400</span><span>Explore floating isles, forge celestial gear and climb the leaderboards.</span></div>
+          <div class="specimen-row"><span class="caption">Lead — Manrope 500</span><span class="lead">A premium celestial gaming brand that happens to be a Minecraft network.</span></div>
+          <div class="specimen-row"><span class="caption">Label / nav — Manrope 600</span><span class="label">Minecraft username</span></div>
+          <div class="specimen-row"><span class="caption">Button / player — Manrope 700</span><span class="player-name">StarforgedKai</span></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="caption">© Divine Network. Not affiliated with Mojang or Microsoft.</footer>
+  </div>
+</body>
+</html>
